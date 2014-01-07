@@ -7,7 +7,7 @@ set -eo pipefail
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 ROOT_DIR=$(dirname $BIN_DIR)
 BUILD_DIR=$1
-CACHE_DIR=$2
+CACHE_DIR=$2/pelican-buildpack
 CACHED_DIRS=".heroku"
 WORKING_DIR=$(pwd)
 
@@ -15,7 +15,9 @@ echo "BUILD_DIR=$BUILD_DIR"
 echo "CACHE_DIR=$CACHE_DIR"
 echo "Called as: $0 $*"
 ls -l /
-ls -l $CACHE_DIR
+if [ -f $CACHE_DIR ]; then
+  ls -l $CACHE_DIR
+fi
 
 rm -fr $CACHE_DIR
 
