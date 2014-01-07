@@ -11,6 +11,12 @@ CACHE_DIR=$2
 CACHED_DIRS=".heroku"
 WORKING_DIR=$(pwd)
 
+echo "BUILD_DIR=$BUILD_DIR"
+echo "CACHE_DIR=$CACHE_DIR"
+echo "Called as: $0 $*"
+ls -l /
+ls -l $CACHE_DIR
+
 rm -fr $CACHE_DIR
 
 mkdir -p $CACHE_DIR
