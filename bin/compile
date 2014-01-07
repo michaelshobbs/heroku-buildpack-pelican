@@ -110,3 +110,6 @@ fi
 cp $ROOT_DIR/conf/mime.types $BUILD_DIR/
 cp $BIN_DIR/launch-nginx "$BUILD_DIR/local/sbin"
 
+cat << EOF > $WORKING_DIR/Procfile
+web: launch-nginx
+EOF
