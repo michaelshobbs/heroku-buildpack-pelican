@@ -30,6 +30,9 @@ http {
     server_name <%= require 'uri'; URI.parse(ENV["PELICAN_SITEURL"]).host %>;
   <% end %>
 
+    error_page   404          /404.html;
+    error_page   502 503 504  /50x.html;
+
     location / {
       expires 10s;
     }
