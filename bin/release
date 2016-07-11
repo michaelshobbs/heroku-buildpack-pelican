@@ -1,4 +1,5 @@
 #!/bin/sh
+[[ $TRACE ]] && set -x
 
 cat << EOF
 ---

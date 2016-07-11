@@ -1,3 +1,4 @@
+[[ $TRACE ]] && set -x
 shopt -s extglob
 
 [ $(uname) == "Darwin" ] && SED_FLAG='-l' || SED_FLAG='-u'

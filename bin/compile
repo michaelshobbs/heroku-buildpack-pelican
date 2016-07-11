@@ -2,6 +2,7 @@
 
 # Fail fast and fail hard.
 set -eo pipefail
+[[ $TRACE ]] && set -x
 
 # Paths.
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path

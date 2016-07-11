@@ -1,4 +1,5 @@
 #!/bin/sh
+[[ $TRACE ]] && set -x
 
 if [ -f $1/pelicanconf.py ] || [ -f $1/publishconf.py ] ; then
   echo "Pelican"
