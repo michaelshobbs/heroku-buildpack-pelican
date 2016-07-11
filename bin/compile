@@ -35,7 +35,7 @@ source $BIN_DIR/utils
 if [[ ! -d "$CACHE_DIR/$PYTHON_VERSION" ]]; then
   cd $CACHE_DIR
   puts-step "Installing Python ($PYTHON_VERSION)"
-  curl http://envy-versions.s3.amazonaws.com/$PYTHON_VERSION.tar.bz2 -s | tar jx &> /dev/null
+  curl http://envy-versions.s3.amazonaws.com/$PYTHON_VERSION.tar.bz2 -s | tar jx
   mv python $PYTHON_VERSION
 fi
 
@@ -44,17 +44,17 @@ export PATH=$CACHE_DIR/$PYTHON_VERSION/bin:$PATH
 if [[ ! -d "$CACHE_DIR/$DISTRIBUTE_VERSION" ]]; then
   cd $CACHE_DIR
   puts-step "Installing Distribute ($DISTRIBUTE_VERSION)"
-  curl https://pypi.python.org/packages/source/d/distribute/$DISTRIBUTE_VERSION.tar.gz -s | tar xz &> /dev/null
+  curl https://pypi.python.org/packages/source/d/distribute/$DISTRIBUTE_VERSION.tar.gz -s | tar xz
   cd $DISTRIBUTE_VERSION
-  python setup.py install &> /dev/null
+  python setup.py install
 fi
 
 if [[ ! -d "$CACHE_DIR/$PIP_VERSION" ]]; then
   cd $CACHE_DIR
   puts-step "Install pip ($PIP_VERSION)"
-  curl https://pypi.python.org/packages/source/p/pip/$PIP_VERSION.tar.gz -s | tar xz &> /dev/null
+  curl https://pypi.python.org/packages/source/p/pip/$PIP_VERSION.tar.gz -s | tar xz
   cd $PIP_VERSION
-  python setup.py install &> /dev/null
+  python setup.py install
 fi
 
 cd $BUILD_DIR
@@ -86,7 +86,7 @@ pelican -d -o $BUILD_DIR/public -s $CONFIG_FILE $BUILD_DIR/content | indent
 puts-step "Installing nginx ($NGINX_VERSION)"
 if [[ ! -d "$CACHE_DIR/$NGINX_VERSION" ]]; then
   cd $CACHE_DIR
-  curl http://nginx.org/download/$NGINX_VERSION.tar.gz -s | tar xz &> /dev/null
+  curl http://nginx.org/download/$NGINX_VERSION.tar.gz -s | tar xz
   cd $NGINX_VERSION
   ./configure --prefix=$BUILD_DIR/local \
     --without-select_module \
@@ -94,12 +94,12 @@ if [[ ! -d "$CACHE_DIR/$NGINX_VERSION" ]]; then
     --without-http_rewrite_module \
     --without-http_gzip_module \
     --without-http_proxy_module \
-    --with-http_gzip_static_module &> /dev/null
-  make -j2 &> /dev/null
+    --with-http_gzip_static_module
+  make -j2
 fi
 
 cd $CACHE_DIR/$NGINX_VERSION
-make install &> /dev/null
+make install
 
 mkdir -p $BUILD_DIR/.profile.d
 cp $ROOT_DIR/conf/path.sh $BUILD_DIR/.profile.d/
